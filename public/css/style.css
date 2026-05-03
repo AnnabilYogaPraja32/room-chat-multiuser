@@ -1,0 +1,384 @@
+/* ================== DESIGN SYSTEM ================== */
+:root {
+    --primary: #5f27cd;
+    --primary-hover: #4b1fb3;
+    --danger: #ff4757;
+
+    --bg: #eef1f6;
+    --glass: rgba(255, 255, 255, 0.7);
+
+    --text-dark: #2d3436;
+    --text-light: #888;
+
+    --bubble-sent: #dcf8c6;
+    --bubble-received: #ffffff;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+
+    --shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+    --transition: 0.2s ease;
+}
+
+/* ================== DARK MODE ================== */
+body.dark {
+    --bg: #1e1f25;
+    --glass: rgba(40, 42, 54, 0.85);
+    --text-dark: #f1f1f1;
+    --text-light: #aaa;
+    --bubble-received: #2c2f36;
+}
+
+/* ================== RESET ================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--bg);
+    transition: var(--transition);
+}
+
+/* ================== LAYOUT ================== */
+.app-container {
+    width: 95%;
+    max-width: 1200px;
+    height: 92vh;
+
+    display: flex;
+    gap: 12px;
+}
+
+/* ================== SIDEBAR ================== */
+.sidebar {
+    width: 260px;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+
+    overflow-y: auto;
+}
+
+.sidebar h4 {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+/* Online counter */
+.online-count {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+/* User item */
+.online-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.online-user:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.online-user.active {
+    background: rgba(95, 39, 205, 0.2);
+}
+
+/* Status dot */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #2ecc71;
+    border-radius: 50%;
+}
+
+/* ================== CHAT ================== */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================== NAVBAR ================== */
+.chat-navbar {
+    height: 60px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius);
+}
+
+#navUsername {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ================== CHAT BOX ================== */
+.chat-app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+/* ================== MESSAGES ================== */
+#messages {
+    flex: 1;
+    padding: 20px;
+
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+#messages::-webkit-scrollbar {
+    width: 6px;
+}
+#messages::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+/* ================== MESSAGE ================== */
+.message-group {
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.2s ease;
+}
+
+.user-name {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-bottom: 3px;
+}
+
+/* Bubble */
+.message-bubble {
+    padding: 10px 14px;
+    border-radius: 18px;
+    position: relative;
+}
+
+/* Sent */
+.sent {
+    align-self: flex-end;
+}
+.sent .message-bubble {
+    background: var(--bubble-sent);
+}
+
+/* Received */
+.received {
+    align-self: flex-start;
+}
+.received .message-bubble {
+    background: var(--bubble-received);
+}
+
+/* Text */
+.text-content {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Timestamp */
+.timestamp {
+    font-size: 0.65rem;
+    color: var(--text-light);
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* ================== MEDIA ================== */
+.chat-media {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: var(--transition);
+}
+.chat-media:hover {
+    transform: scale(1.02);
+}
+
+/* ================== INPUT ================== */
+.chat-input-area {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+}
+
+/* Inputs */
+input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: var(--transition);
+}
+
+input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(95,39,205,0.2);
+}
+
+/* ================== BUTTON ================== */
+button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+
+    background: var(--primary);
+    color: white;
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.btn-danger {
+    background: var(--danger);
+}
+
+/* ================== SYSTEM ================== */
+.system-message {
+    align-self: center;
+    font-size: 0.75rem;
+    background: rgba(0,0,0,0.05);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+/* ================== TYPING ================== */
+.typing-indicator {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* ================== MODAL ================== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.5);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+
+    border-radius: var(--radius);
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* ================== VIDEO ================== */
+.video-grid {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    display: flex;
+    gap: 10px;
+}
+
+video {
+    width: 150px;
+    border-radius: 10px;
+    background: black;
+}
+
+/* ================== ANIMATION ================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .message-group {
+        max-width: 85%;
+    }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- ================== SIDEBAR ================== -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h4>Online Users</h4>
+            <button onclick="openGlobalChat()" class="btn-secondary btn-small">
+                🌐 Global
+            </button>
+        </div>
+
+        <!-- LIST USER -->
+        <div id="onlineUsers"></div>
+    </aside>
+
+    <!-- ================== CHAT AREA ================== -->
+    <main class="chat-container">
+
+        <!-- NAVBAR -->
+        <nav class="chat-navbar">
+            <div class="user-profile-info">
+                <img src="assets/default-avatar.png" id="navAvatar" class="avatar-small">
+                <span id="navUsername">Memuat...</span>
+            </div>
+
+            <div class="nav-actions">
+                <button onclick="UI.openModal()" class="btn-secondary">⚙️</button>
+                <a href="/logout">
+                    <button class="btn-danger">Logout</button>
+                </a>
+            </div>
+        </nav>
+
+        <!-- CHAT BOX -->
+        <section class="chat-app">
+
+            <!-- 🔥 CHAT HEADER (PENTING untuk PRIVATE CHAT) -->
+            <div class="chat-header">
+                <span id="chatHeader">Global Chat</span>
+            </div>
+
+            <!-- MESSAGES -->
+            <div id="messages"></div>
+
+            <!-- INPUT AREA -->
+            <div class="chat-input-area">
+
+                <input 
+                    type="text" 
+                    id="msgInput" 
+                    placeholder="Ketik pesan..." 
+                    autocomplete="off"
+                >
+
+                <input type="file" id="fileInput" hidden>
+
+                <button 
+                    type="button"
+                    onclick="document.getElementById('fileInput').click()" 
+                    title="Upload file"
+                >
+                    📎
+                </button>
+
+                <button id="sendBtn" class="btn-primary">
+                    Kirim
+                </button>
+
+                <button id="videoCallBtn" class="btn-call" title="Video Call">
+                    📹
+                </button>
+            </div>
+
+        </section>
+    </main>
+
+</div>
+
+<!-- ================== VIDEO CALL ================== -->
+<section class="video-grid">
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+</section>
+
+<!-- ================== MODAL ================== -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <h3>Edit Profil</h3>
+
+        <form action="/update-profile" method="POST" id="editProfileForm">
+            <input 
+                type="text" 
+                name="full_name" 
+                id="editFullName" 
+                placeholder="Nama Lengkap" 
+                required
+            >
+
+            <input 
+                type="email" 
+                name="email" 
+                id="editEmail" 
+                placeholder="Email" 
+                required
+            >
+
+            <div class="modal-footer">
+                <button 
+                    type="button" 
+                    onclick="UI.closeModal()" 
+                    class="btn-secondary"
+                >
+                    Batal
+                </button>
+
+                <button type="submit" class="btn-primary">
+                    Simpan
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ================== SCRIPTS ================== -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
